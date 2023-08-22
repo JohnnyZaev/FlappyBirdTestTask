@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Zenject;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
@@ -11,6 +12,8 @@ public class FlyBehaviour : MonoBehaviour
 
     private Rigidbody2D _playerRigidbody2D;
     [Inject] private UIHandler _uiHandler;
+    [Inject] private AudioHandler _audioHandler;
+    [Inject] private CanvasHitDetector _canvasHitDetector;
 
     private void OnEnable()
     {
@@ -36,16 +39,24 @@ public class FlyBehaviour : MonoBehaviour
 
     private void MoveUp(Finger finger)
     {
+        if (_canvasHitDetector.IsPointerOverUI())
+            return;
+        if (Time.timeScale == 0f)
+            _uiHandler.StartGame();
         _playerRigidbody2D.velocity = Vector2.up * velocity;
+        _audioHandler.PlaySound(AudioHandler.Sounds.Wing);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         _uiHandler.GameOver();
+        _audioHandler.PlaySound(AudioHandler.Sounds.Hit);
+        enabled = false;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         _uiHandler.UpdateScore();
+        _audioHandler.PlaySound(AudioHandler.Sounds.Point);
     }
 }

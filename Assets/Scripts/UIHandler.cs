@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class UIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject startPanel;
+    [SerializeField] private GameObject tapTapObject;
     [SerializeField] private TMP_Text currentScoreNumber;
     [SerializeField] private TMP_Text bestScoreNumber;
 
@@ -12,15 +15,23 @@ public class UIHandler : MonoBehaviour
     
     public void Restart()
     {
+        DOTween.KillAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Awake()
     {
-        Time.timeScale = 1f;
+        tapTapObject.transform.DOScale(1.3f, 0.5f).SetLoops(1000, LoopType.Yoyo).SetEase(Ease.InOutSine).SetUpdate(true);
+        Time.timeScale = 0f;
         currentScoreNumber.text = _score.ToString();
         bestScoreNumber.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
         UpdateHighScore();
+    }
+
+    public void StartGame()
+    {
+        startPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     private void UpdateHighScore()

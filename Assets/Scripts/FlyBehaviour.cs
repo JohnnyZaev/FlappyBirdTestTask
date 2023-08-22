@@ -43,4 +43,9 @@ public class FlyBehaviour : MonoBehaviour
     {
         _uiHandler.GameOver();
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        _uiHandler.UpdateScore();
+    }
 }

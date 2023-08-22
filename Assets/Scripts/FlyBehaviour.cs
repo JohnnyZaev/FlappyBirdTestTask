@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using Zenject;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -9,6 +10,7 @@ public class FlyBehaviour : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
 
     private Rigidbody2D _playerRigidbody2D;
+    [Inject] private UIHandler _uiHandler;
 
     private void OnEnable()
     {
@@ -35,5 +37,10 @@ public class FlyBehaviour : MonoBehaviour
     private void MoveUp(Finger finger)
     {
         _playerRigidbody2D.velocity = Vector2.up * velocity;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        _uiHandler.GameOver();
     }
 }

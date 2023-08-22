@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Zenject;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -34,8 +33,6 @@ public class AudioHandler : MonoBehaviour
                 break;
             case Sounds.Point:
                 _audioSource.PlayOneShot(pointSound);
-                break;
-            default:
                 break;
         }
     }

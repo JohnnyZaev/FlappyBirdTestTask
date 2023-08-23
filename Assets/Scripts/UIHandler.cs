@@ -8,10 +8,12 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private GameObject gameOverCanvas;
     [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject tapTapObject;
+    [SerializeField] private GameObject settingsPanel;
     [SerializeField] private TMP_Text currentScoreNumber;
     [SerializeField] private TMP_Text bestScoreNumber;
 
     private int _score;
+    private bool _isGameActive;
     
     public void Restart()
     {
@@ -31,7 +33,9 @@ public class UIHandler : MonoBehaviour
     public void StartGame()
     {
         startPanel.SetActive(false);
+        settingsPanel.SetActive(false);
         Time.timeScale = 1f;
+        _isGameActive = true;
     }
 
     private void UpdateHighScore()
@@ -54,5 +58,12 @@ public class UIHandler : MonoBehaviour
     {
         Time.timeScale = 0f;
         gameOverCanvas.SetActive(true);
+    }
+
+    public void SettingsButton()
+    {
+        settingsPanel.SetActive(!settingsPanel.activeInHierarchy);
+        if (_isGameActive)
+            Time.timeScale = Time.timeScale == 0 ? 1 : 0;
     }
 }

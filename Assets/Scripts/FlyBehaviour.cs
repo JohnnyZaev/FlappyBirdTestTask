@@ -46,7 +46,7 @@ public class FlyBehaviour : MonoBehaviour
         _audioHandler.PlaySound(AudioHandler.Sounds.Wing);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D()
     {
         _uiHandler.GameOver();
         _audioHandler.PlaySound(AudioHandler.Sounds.Hit);

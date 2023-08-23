@@ -1,6 +1,8 @@
 using DG.Tweening;
+using Difficulty;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class UIHandler : MonoBehaviour
@@ -11,6 +13,11 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private TMP_Text currentScoreNumber;
     [SerializeField] private TMP_Text bestScoreNumber;
+    [SerializeField] private DifficultyBase[] difficultyList;
+    [SerializeField] private TMP_Dropdown difficultyDropdown;
+    public UnityEvent onDifficultyChanged;
+
+    [HideInInspector] public DifficultyBase currentDifficulty; 
 
     private int _score;
     private bool _isGameActive;
@@ -24,6 +31,9 @@ public class UIHandler : MonoBehaviour
     private void Awake()
     {
         tapTapObject.transform.DOScale(1.3f, 0.5f).SetLoops(1000, LoopType.Yoyo).SetEase(Ease.InOutSine).SetUpdate(true);
+        difficultyDropdown.value = PlayerPrefs.GetInt("Difficulty", 0);
+        currentDifficulty = difficultyList[difficultyDropdown.value];
+        onDifficultyChanged.Invoke();
         Time.timeScale = 0f;
         currentScoreNumber.text = _score.ToString();
         bestScoreNumber.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
@@ -65,5 +75,12 @@ public class UIHandler : MonoBehaviour
         settingsPanel.SetActive(!settingsPanel.activeInHierarchy);
         if (_isGameActive)
             Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+    }
+
+    public void ChangeDifficulty()
+    {
+        currentDifficulty = difficultyList[difficultyDropdown.value];
+        PlayerPrefs.SetInt("Difficulty", difficultyDropdown.value);
+        onDifficultyChanged.Invoke();
     }
 }

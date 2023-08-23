@@ -1713,7 +1713,7 @@ GameObject:
   - component: {fileID: 604178000}
   - component: {fileID: 604178002}
   - component: {fileID: 604178001}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: BestNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3453,6 +3453,7 @@ MonoBehaviour:
   uiHandler: {fileID: 1633869352}
   audioHandler: {fileID: 456526192}
   canvasHitDetector: {fileID: 253311343}
+  volumeSlider: {fileID: 2100780068}
 --- !u!4 &1463872265
 Transform:
   m_ObjectHideFlags: 0
@@ -3555,7 +3556,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1522394128}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3597,7 +3598,7 @@ GameObject:
   - component: {fileID: 1608771503}
   - component: {fileID: 1608771505}
   - component: {fileID: 1608771504}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: ScoreNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3917,7 +3918,7 @@ GameObject:
   - component: {fileID: 1722853353}
   - component: {fileID: 1722853355}
   - component: {fileID: 1722853354}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4847,7 +4848,7 @@ GameObject:
   - component: {fileID: 2091664318}
   - component: {fileID: 2091664320}
   - component: {fileID: 2091664319}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: BestText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5137,7 +5138,19 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 456526192}
+        m_TargetAssemblyTypeName: AudioHandler, Assembly-CSharp
+        m_MethodName: ChangeVolumeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2130689168
 GameObject:
   m_ObjectHideFlags: 0

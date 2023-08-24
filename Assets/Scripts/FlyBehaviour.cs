@@ -42,6 +42,7 @@ public class FlyBehaviour : MonoBehaviour
             return;
         if (Time.timeScale == 0f)
             _uiHandler.StartGame();
+        _uiHandler.DeactivateSettingsButton();
         _playerRigidbody2D.velocity = Vector2.up * velocity;
         _audioHandler.PlaySound(AudioHandler.Sounds.Wing);
     }

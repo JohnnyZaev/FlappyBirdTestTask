@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "appsflyer-unity-plugin": {
+      "version": "https://github.com/AppsFlyerSDK/appsflyer-unity-plugin.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c8440ae1f0250a19983873ff61eba56fa1f5c67c"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.9",
       "depth": 1,

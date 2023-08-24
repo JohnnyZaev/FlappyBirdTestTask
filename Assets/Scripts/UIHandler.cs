@@ -11,6 +11,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject tapTapObject;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject settingsButton;
     [SerializeField] private TMP_Text currentScoreNumber;
     [SerializeField] private TMP_Text bestScoreNumber;
     [SerializeField] private DifficultyBase[] difficultyList;
@@ -82,5 +83,10 @@ public class UIHandler : MonoBehaviour
         currentDifficulty = difficultyList[difficultyDropdown.value];
         PlayerPrefs.SetInt("Difficulty", difficultyDropdown.value);
         onDifficultyChanged.Invoke();
+    }
+
+    public void DeactivateSettingsButton()
+    {
+        settingsButton.SetActive(false);
     }
 }

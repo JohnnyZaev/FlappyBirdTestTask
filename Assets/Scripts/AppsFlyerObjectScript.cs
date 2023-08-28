@@ -22,6 +22,9 @@ public class AppsFlyerObjectScript : MonoBehaviour , IAppsFlyerConversionData
         DontDestroyOnLoad(gameObject);
         AppsFlyer.initSDK("ZLigGqGzDdxGMT7QBPjsMG", null, this);
         AppsFlyer.startSDK();
+        #if UNITY_EDITOR
+        FindObjectOfType<FlyBehaviour>().enabled = true;
+        #endif
     }
 
     public void onConversionDataSuccess(string conversionData)
